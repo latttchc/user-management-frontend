@@ -49,10 +49,10 @@ export const api = async (url: string, options: ApiOptions = {}) => {
             responseType: 'json', // レスポンス形式をJSONに指定
             url,         // リクエスト先URL
         })
-        
+
         // レスポンスのデータ部分のみを返す
         return response.data
-    } catch (error) {
+    } catch (error: any) {
         // エラー発生時はAPIから返されたエラーメッセージを投げる
         // error.response?.data?.errors: サーバーから返されたエラー詳細
         throw new Error(error.response?.data?.errors)
