@@ -16,7 +16,7 @@ const axiosInstance = axios.create({
  * @interface ApiOptions
  */
 type ApiOptions = {
-    data?: object,   // POSTやPUTリクエストで送信するボディデータ（オプション）
+    data?: object | string,   // POSTやPUTリクエストで送信するボディデータ（オプション）
     method?: 'get' | 'put' | 'post' | 'delete', // HTTPメソッド（デフォルト: get）
     params?: object, // URLクエリパラメータ（オプション）
 }
