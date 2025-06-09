@@ -88,7 +88,7 @@ export default function EditUser(props: any) {
                                         {...field}
                                     />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage className="text-red-400" />
                             </FormItem>
                         )}
                     />
@@ -97,7 +97,7 @@ export default function EditUser(props: any) {
                         name="email"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>メールアドレス</FormLabel>
+                                <FormLabel className="pt-2">メールアドレス</FormLabel>
                                 <FormControl>
                                     <Input
                                         type="email"
@@ -105,11 +105,12 @@ export default function EditUser(props: any) {
                                         {...field}
                                     />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage className="text-red-400" />
                             </FormItem>
                         )}
                     />
                     <Button
+                        className="bg-green-500 hover:bg-green-800 w-64 mt-3"
                         type="submit"
                         disabled={updateMuttation.isPending}
                     >
