@@ -3,7 +3,7 @@
  * 各環境に対応するAPIサーバーのベースURLを定義
  */
 const baseURLs = {
-    development: 'https://localhost:3002/v1/',  // 開発環境: ローカル開発サーバー（ポート3002、APIバージョンv1）
+    development: 'http://localhost:3002/v1/',  // 開発環境: ローカル開発サーバー（ポート3002、APIバージョンv1）
     staging: '',      // ステージング環境: テスト用サーバー（未設定）
     production: '',   // 本番環境: 本番サーバー（未設定）
     test: '',         // テスト環境: テスト実行時のモックサーバー（未設定）
