@@ -16,7 +16,7 @@ const axiosInstance = axios.create({
  * @interface ApiOptions
  */
 type ApiOptions = {
-    data?: object,   // POSTやPUTリクエストで送信するボディデータ（オプション）
+    data?: object | string,   // POSTやPUTリクエストで送信するボディデータ（オプション）
     method?: 'get' | 'put' | 'post' | 'delete', // HTTPメソッド（デフォルト: get）
     params?: object, // URLクエリパラメータ（オプション）
 }
@@ -27,7 +27,6 @@ type ApiOptions = {
  * 
  * @param url - リクエスト先のエンドポイントURL
  * @param options - リクエストオプション（メソッド、データ、パラメータ）
- * @returns Promise<any> - APIレスポンスのデータ部分
  * @throws Error - APIエラー時にエラーメッセージを投げる
  */
 export const api = async (url: string, options: ApiOptions = {}) => {
@@ -42,7 +41,8 @@ export const api = async (url: string, options: ApiOptions = {}) => {
         const response = await axiosInstance.request({
             data,        // リクエストボディ（POST/PUTの場合）
             headers: {
-                'Authorization': `Bearer ${accessToken}` // JWT認証ヘッダーを設定
+                'Authorization': `Bearer ${accessToken}`, // JWT認証ヘッダーを設定
+                'Content-Type': 'application/json', // HTTP通信でサーバーに「送信するデータの形式」を伝えるHTTPヘッダー
             },
             method,      // HTTPメソッド
             params,      // URLクエリパラメータ
