@@ -1,7 +1,8 @@
 import api from "."; // 汎用API関数をインポート
 
 type Endpoint = {
-    getUser: () => Promise<APIschema.User[]>,
+    getUsers: () => Promise<APIschema.User[]>,
+    getUser: (userId: number) => Promise<APIschema.User>,
     createUser: (user: Partial<APIschema.User>) => Promise<APIschema.User[]>,
     updateUser: (user: Partial<APIschema.User>) => Promise<APIschema.User[]>,
     deleteUser: (user: Partial<APIschema.User>) => Promise<APIschema.User[]>,
@@ -21,8 +22,11 @@ const endpoint: Endpoint = {
      * JSON.stringfy : object => JSON文字列
      * JSON.parse : JSON文字列 => object
      */
-    getUser: async () => {
+    getUsers: async () => {
         return await api('users') // 'users'エンドポイントにGETリクエストを送信
+    },
+    getUser: async (userId) => {
+        return await api(`users/${userId}`)
     },
     createUser: async (user: Partial<APIschema.User>) => {
         return await api('users', {

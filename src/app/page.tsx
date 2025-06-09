@@ -1,12 +1,18 @@
 'use client'
-import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import { useQuery, useMutation } from "@tanstack/react-query";
 
 import apiRouter from "@/api/router"
 
 export default function Home() {
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ['getUsers'],
-    queryFn: apiRouter.users.getUser,
+    queryFn: apiRouter.users.getUsers,
+  })
+
+  const deleteMutation = useMutation({
+    mutationFn: apiRouter.users.deleteUser,
+    onSuccess: () => refetch(),
   })
 
 
@@ -16,7 +22,13 @@ export default function Home() {
       <ul>
         {data?.map((user) => (
           <li key={user.id}>
-            {user.name} - {user.email}
+            <Link className="text-white text-bold" href={`users/${user.id}`}>
+              {user.name}
+            </Link>
+            <span>{user.email}</span>
+            <button onClick={() => deleteMutation.mutate(user)}>
+              DELETE
+            </button>
           </li>
         ))}
       </ul>
